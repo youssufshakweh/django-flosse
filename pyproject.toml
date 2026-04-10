@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-flosse"
+version = "0.1.2"
+description = "Dead-simple Server-Sent Events for Django via a single decorator."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "Youssuf Shakweh" }]
+keywords = [
+    "django",
+    "sse",
+    "server-sent-events",
+    "streaming",
+    "http-streaming",
+    "real-time",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Typing :: Typed",
+]
+dependencies = ["django>=3.2"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-asyncio", "pytest-django", "pytest-cov"]
+
+[project.urls]
+Homepage = "https://github.com/youssufshakweh/django-flosse"
+Repository = "https://github.com/youssufshakweh/django-flosse"
+Changelog = "https://github.com/youssufshakweh/django-flosse/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/youssufshakweh/django-flosse/issues"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+asyncio_mode = "auto"
+addopts = [
+    "--cov=django_flosse",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-fail-under=80",
+    "-v",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.hatch.build.targets.wheel]
+packages = ["django_flosse"]
