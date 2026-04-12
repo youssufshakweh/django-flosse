@@ -1,0 +1,84 @@
+site_name: django-flosse
+site_description: Dead-simple Server-Sent Events for Django via a single decorator.
+site_url: https://youssufshakweh.github.io/django-flosse
+repo_url: https://github.com/youssufshakweh/django-flosse
+repo_name: youssufshakweh/django-flosse
+copyright: Copyright &copy; 2026 Youssuf Shakweh
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Quick Start: quickstart.md
+  - User Guide:
+      - Yield Styles: user-guide/yield-styles.md
+      - Permissions: user-guide/permissions.md
+      - Heartbeats: user-guide/heartbeats.md
+      - Deployment: user-guide/deployment.md
+  - API Reference: api-reference.md
+  - Roadmap: roadmap.md
+  - Changelog: changelog.md
+
+plugins:
+  - search
+  - termynal
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            show_signature_annotations: true
+            docstring_style: numpy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/youssufshakweh/django-flosse
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/django-flosse/
