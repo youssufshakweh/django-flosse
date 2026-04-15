@@ -4,7 +4,7 @@ from django.http import HttpResponse, StreamingHttpResponse
 
 from django_flosse import SSEEvent, sse_stream
 from django_flosse.permissions import BaseSSEPermission, IsAuthenticated, IsAdminUser
-from tests.conftest import consume
+from tests.conftest import async_consume, consume
 
 
 # --------------------------------------------------------------------------- #
@@ -316,3 +316,103 @@ class TestDecorationMeta:
 
         body = consume(view(make_request(), pk=42))
         assert "data: pk=42\n" in body
+
+
+# --------------------------------------------------------------------------- #
+# Async Tests                                                                 #
+# --------------------------------------------------------------------------- #
+
+
+class TestAsyncDecoratedView:
+    async def test_returns_streaming_response(self, plain_request):
+        @sse_stream
+        async def view(request):
+            yield "hello"
+
+        resp = await view(plain_request)
+        assert isinstance(resp, StreamingHttpResponse)
+
+    async def test_headers_set_correctly(self, plain_request):
+        @sse_stream(retry=3000)
+        async def view(request):
+            yield "x"
+
+        resp = await view(plain_request)
+        assert "text/event-stream" in resp["Content-Type"]
+        assert "no-cache" in resp["Cache-Control"]
+        assert resp["X-Accel-Buffering"] == "no"
+
+    async def test_plain_string_yields_correct_sse(self, plain_request):
+        @sse_stream
+        async def view(request):
+            yield "hello"
+
+        resp = await view(plain_request)
+        body = await async_consume(resp)
+        assert "data: hello\n" in body
+
+    async def test_tuple_event_data(self, plain_request):
+        @sse_stream
+        async def view(request):
+            yield ("update", {"n": 1})
+
+        resp = await view(plain_request)
+        body = await async_consume(resp)
+        assert "event: update\n" in body
+        assert '"n": 1' in body
+
+    async def test_retry_sent_first(self, plain_request):
+        @sse_stream(retry=5000)
+        async def view(request):
+            yield "x"
+
+        resp = await view(plain_request)
+        body = await async_consume(resp)
+        assert body.startswith("retry: 5000\n\n")
+
+    async def test_permission_deny_returns_403(self, anon_request):
+        @sse_stream(permission_classes=[IsAuthenticated])
+        async def view(request):
+            yield "never"
+
+        resp = await view(anon_request)
+        assert isinstance(resp, HttpResponse)
+        assert resp.status_code == 403
+
+    async def test_permission_allow_streams_200(self, authed_request):
+        @sse_stream(permission_classes=[IsAuthenticated])
+        async def view(request):
+            yield "ok"
+
+        resp = await view(authed_request)
+        assert resp.status_code == 200
+
+    async def test_async_producer_exception_emits_error(self, plain_request):
+        @sse_stream
+        async def view(request):
+            yield "before"
+            raise RuntimeError("boom")
+
+        resp = await view(plain_request)
+        body = await async_consume(resp)
+        assert "event: error\n" in body
+        assert "boom" in body
+        assert "data: before\n" in body
+
+    async def test_invalid_yield_format_emits_error(self, plain_request):
+        @sse_stream
+        async def view(request):
+            yield ("a", "b", "c", "d")
+
+        resp = await view(plain_request)
+        body = await async_consume(resp)
+        assert "event: error\n" in body
+
+    async def test_wraps_preserves_metadata(self):
+        @sse_stream
+        async def my_async_view(request):
+            """Async SSE view."""
+            yield "x"
+
+        assert my_async_view.__name__ == "my_async_view"
+        assert my_async_view.__doc__ == "Async SSE view."

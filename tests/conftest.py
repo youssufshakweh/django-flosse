@@ -60,3 +60,11 @@ def consume(response) -> str:
         chunk.decode() if isinstance(chunk, bytes) else chunk
         for chunk in response.streaming_content
     )
+
+
+async def async_consume(response) -> str:
+    """Drain an async StreamingHttpResponse into a single string."""
+    chunks = []
+    async for chunk in response.streaming_content:
+        chunks.append(chunk.decode() if isinstance(chunk, bytes) else chunk)
+    return "".join(chunks)

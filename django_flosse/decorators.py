@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import inspect
 import logging
 from functools import wraps
 from typing import Any, Callable, Optional, Sequence, Type
@@ -13,6 +14,52 @@ from .permissions import BaseSSEPermission
 logger = logging.getLogger("django_flosse")
 
 
+# -------------------------------------------------- #
+# Shared helpers                                     #
+# -------------------------------------------------- #
+
+
+def _check_permissions(
+    request: HttpRequest,
+    permission_classes: Sequence[Type[BaseSSEPermission]],
+) -> Optional[HttpResponse]:
+    """
+    Check all permission classes against the request.
+
+    Returns a 403 HttpResponse on the first failure, else None.
+    """
+    for perm_cls in permission_classes:
+        if not perm_cls().has_permission(request):
+            logger.debug(
+                "SSE permission denied by %s for %s",
+                perm_cls.__name__,
+                request.path,
+            )
+            return HttpResponse(status=403)
+    return None
+
+
+def _build_response(streaming_content: Any) -> StreamingHttpResponse:
+    """
+    Build a StreamingHttpResponse with the correct SSE headers.
+
+    Works with both sync and async generators — Django detects
+    the iterator type automatically via StreamingHttpResponse.
+    """
+    response = StreamingHttpResponse(
+        streaming_content,
+        content_type="text/event-stream; charset=utf-8",
+    )
+    response["Cache-Control"] = "no-cache, no-transform"
+    response["X-Accel-Buffering"] = "no"
+    return response
+
+
+# -------------------------------------------------- #
+# Decorator                                          #
+# -------------------------------------------------- #
+
+
 def sse_stream(
     _view_func: Optional[Callable] = None,
     *,
@@ -22,16 +69,24 @@ def sse_stream(
     """
     Decorator that turns a **generator view** into an SSE endpoint.
 
+    Supports both sync and async generator views — detected automatically::
+
+        # sync
+        @sse_stream
+        def feed(request):
+            yield ("update", {"value": 1})
+
+        # async — requires ASGI server (Uvicorn, Daphne)
+        @sse_stream
+        async def feed(request):
+            async for item in my_async_source():
+                yield ("update", {"value": item})
+
     Can be used with or without parentheses::
 
         @sse_stream
-        def view(request): ...
-
         @sse_stream()
-        def view(request): ...
-
         @sse_stream(retry=3000, permission_classes=[IsAuthenticated])
-        def view(request): ...
 
     Parameters
     ----------
@@ -39,52 +94,93 @@ def sse_stream(
         If given, sends a ``retry:`` directive (in ms) as the first frame,
         telling the browser how long to wait before reconnecting.
     permission_classes:
-        Iterable of :class:`~django_flosse.permissions.BaseSSEPermission` **classes**
-        (not instances). All must pass or the response is HTTP 403.
+        Sequence of :class:`~django_flosse.permissions.BaseSSEPermission`
+        **classes** (not instances). All must pass or the response is HTTP 403.
 
     Yield styles
     ------------
-    Inside the decorated generator you may yield:
-
-    * ``str``                           → plain data event
-    * ``(event_name, data)``            → named event
-    * ``(event_name, data, id)``        → named event with ID
-    * ``dict`` with a ``"data"`` key    → keyword-mapped to :class:`~django_flosse.events.SSEEvent`
-    * ``dict`` without ``"data"``       → whole dict serialised as JSON data
+    * ``str``                        → plain data event
+    * ``(event_name, data)``         → named event
+    * ``(event_name, data, id)``     → named event with ID
+    * ``dict`` with ``"data"`` key   → mapped to SSEEvent fields
+    * ``dict`` without ``"data"``    → whole dict serialised as JSON
     * :class:`~django_flosse.events.SSEEvent` → used directly
 
     Heartbeats
     ----------
     django-flosse does **not** manage heartbeats automatically.
-    If you are behind a proxy (Nginx, AWS ELB, Cloudflare) that closes idle
-    connections, emit a keep-alive ping yourself inside the generator::
+    Emit a keep-alive ping yourself if behind a proxy::
 
         @sse_stream
-        def live_feed(request):
+        async def live_feed(request):
             while True:
-                data = get_new_data()
+                data = await get_new_data()
                 if data:
                     yield ("update", data)
                 else:
-                    yield SSEEvent(data="", event="ping")   # keep-alive
-                time.sleep(5)
+                    yield SSEEvent(data="", event="ping")
+                await asyncio.sleep(5)
     """
 
     def decorator(view_func: Callable) -> Callable:
+        # -------------------------------------------------------------------- #
+        # Async path                                                           #
+        # -------------------------------------------------------------------- #
+        if inspect.isasyncgenfunction(view_func):
+
+            @wraps(view_func)
+            async def awrapper(
+                request: HttpRequest, *args: Any, **kwargs: Any
+            ) -> HttpResponse:
+                # ---------------------------------------------------------------- #
+                # 1. Permission checks                                             #
+                # ---------------------------------------------------------------- #
+                denied = _check_permissions(request, permission_classes)
+                if denied:
+                    return denied
+
+                # ---------------------------------------------------------------- #
+                # 2. Async streaming generator                                     #
+                # ---------------------------------------------------------------- #
+                async def astream():
+                    if retry is not None:
+                        yield f"retry: {retry}\n\n"
+
+                    try:
+                        async for item in view_func(request, *args, **kwargs):
+                            try:
+                                yield to_sse(item)
+                            except Exception as fmt_err:  # noqa: BLE001
+                                logger.warning("SSE format error: %s", fmt_err)
+                                yield SSEEvent(
+                                    data=str(fmt_err), event="error"
+                                ).encode()
+
+                    except Exception as exc:  # noqa: BLE001
+                        logger.exception(
+                            "SSE async producer raised an exception: %s", exc
+                        )
+                        yield SSEEvent(data=str(exc), event="error").encode()
+
+                # ---------------------------------------------------------------- #
+                # 3. Build response                                                #
+                # ---------------------------------------------------------------- #
+                return _build_response(astream())
+
+            return awrapper
+
+        # -------------------------------------------------------------------- #
+        # Sync path                                                            #
+        # -------------------------------------------------------------------- #
         @wraps(view_func)
         def wrapper(request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
 
             # ---------------------------------------------------------------- #
             # 1. Permission checks                                             #
             # ---------------------------------------------------------------- #
-            for perm_cls in permission_classes:
-                if not perm_cls().has_permission(request):
-                    logger.debug(
-                        "SSE permission denied by %s for %s",
-                        perm_cls.__name__,
-                        request.path,
-                    )
-                    return HttpResponse(status=403)
+            denied = _check_permissions(request, permission_classes)
+            if denied:
+                return denied
 
             # ---------------------------------------------------------------- #
             # 2. Streaming generator                                           #
@@ -94,8 +190,7 @@ def sse_stream(
                     yield f"retry: {retry}\n\n"
 
                 try:
-                    gen = view_func(request, *args, **kwargs)
-                    for item in gen:
+                    for item in view_func(request, *args, **kwargs):
                         try:
                             yield to_sse(item)
                         except Exception as fmt_err:  # noqa: BLE001
@@ -110,14 +205,9 @@ def sse_stream(
                     yield SSEEvent(data=str(exc), event="error").encode()
 
             # ---------------------------------------------------------------- #
-            # 3. Build and return the streaming response                       #
+            # 3. Build response                                                #
             # ---------------------------------------------------------------- #
-            response = StreamingHttpResponse(
-                _stream(), content_type="text/event-stream; charset=utf-8"
-            )
-            response["Cache-Control"] = "no-cache, no-transform"
-            response["X-Accel-Buffering"] = "no"
-            return response
+            return _build_response(_stream())
 
         return wrapper
 
