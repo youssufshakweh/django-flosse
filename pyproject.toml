@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-flosse"
-version = "0.1.2"
+version = "0.2.0"
 description = "Dead-simple Server-Sent Events for Django via a single decorator."
 readme = "README.md"
 license = "MIT"
@@ -21,9 +21,6 @@ keywords = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.0",
-    "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
@@ -44,7 +41,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     "Typing :: Typed",
 ]
-dependencies = ["django>=3.2"]
+dependencies = ["django>=4.2"]
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-asyncio", "pytest-django", "pytest-cov"]
