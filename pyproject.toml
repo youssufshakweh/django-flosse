@@ -46,7 +46,13 @@ dependencies = ["django>=4.2"]
 [project.optional-dependencies]
 test = ["pytest", "pytest-asyncio", "pytest-django", "pytest-cov"]
 
-docs = ["mkdocs", "mkdocs-material", "mkdocstrings[python]", "termynal"]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-include-markdown-plugin",
+    "mkdocstrings[python]",
+    "termynal",
+]
 
 [project.urls]
 Homepage = "https://github.com/youssufshakweh/django-flosse"
