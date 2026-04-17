@@ -3,7 +3,11 @@
 | Requirement | Version    |
 |-------------|------------|
 | Python      | 3.9 – 3.14 |
-| Django      | 3.2 – 6.0  |
+| Django      | 4.2 – 6.0  |
+
+!!! note "Dropped support"
+    Versions prior to Django 4.2 (3.2, 4.0, 4.1) are no longer supported as of `django-flosse v0.2.0`.
+    Please upgrade to Django 4.2+ or pin `django-flosse<0.2.0` for legacy projects.
 
 ---
 
@@ -65,7 +69,7 @@ to avoid conflicts with your system Python.
 <!-- termynal -->
 ```
 $ python -c "import django_flosse; print(django_flosse.__version__)"
-0.1.2
+0.2.0
 ```
 
 !!! success "You're ready!"
