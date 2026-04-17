@@ -40,6 +40,7 @@ nav:
   - User Guide:
       - Yield Styles: user-guide/yield-styles.md
       - Permissions: user-guide/permissions.md
+      - Async Support: user-guide/async-support.md
       - Heartbeats: user-guide/heartbeats.md
       - Deployment: user-guide/deployment.md
   - API Reference: api-reference.md
@@ -47,6 +48,7 @@ nav:
   - Changelog: changelog.md
 
 plugins:
+  - include-markdown
   - search
   - termynal
   - mkdocstrings:
@@ -73,9 +75,10 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji ""
+      emoji_generator:
 
+        !!python/name:material.extensions.emoji.to_svg ""
 extra:
   social:
     - icon: fontawesome/brands/github
