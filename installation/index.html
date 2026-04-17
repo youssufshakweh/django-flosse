@@ -685,6 +685,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/async-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/heartbeats/" class="md-nav__link">
         
   
@@ -927,10 +955,15 @@
 </tr>
 <tr>
 <td>Django</td>
-<td>3.2 – 6.0</td>
+<td>4.2 – 6.0</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Dropped support</p>
+<p>Versions prior to Django 4.2 (3.2, 4.0, 4.1) are no longer supported as of <code>django-flosse v0.2.0</code>.
+Please upgrade to Django 4.2+ or pin <code>django-flosse&lt;0.2.0</code> for legacy projects.</p>
+</div>
 <hr />
 <h2 id="install-the-package">Install the package</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">pip</label><label for="__tabbed_1_2">uv</label></div>
@@ -959,7 +992,7 @@ to avoid conflicts with your system Python.</p>
 </div>
 <hr />
 <h2 id="verify-installation">Verify installation</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">python -c &quot;import django_flosse; print(django_flosse.__version__)&quot;</span><span data-ty>0.1.2<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">python -c &quot;import django_flosse; print(django_flosse.__version__)&quot;</span><span data-ty>0.2.0<br></span></div>
 
 <div class="admonition success">
 <p class="admonition-title">You're ready!</p>

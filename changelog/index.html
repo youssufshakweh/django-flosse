@@ -596,6 +596,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/async-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/heartbeats/" class="md-nav__link">
         
   
@@ -773,15 +801,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#012-2026" class="md-nav__link">
+  <a href="#020-2026-04-15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [0.1.2] — 2026
+        [0.2.0] — 2026-04-15
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[0.1.2] — 2026">
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-04-15">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#012-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.1.2] — 2026-04-10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.1.2] — 2026-04-10">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -846,15 +913,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#012-2026" class="md-nav__link">
+  <a href="#020-2026-04-15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [0.1.2] — 2026
+        [0.2.0] — 2026-04-15
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[0.1.2] — 2026">
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-04-15">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#012-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.1.2] — 2026-04-10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.1.2] — 2026-04-10">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -906,8 +1012,25 @@
 
 <h1 id="changelog">Changelog</h1>
 <p>All notable changes to django-flosse will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <hr />
-<h2 id="012-2026">[0.1.2] — 2026</h2>
+<h2 id="020-2026-04-15">[0.2.0] — 2026-04-15</h2>
+<h3 id="breaking-changes">Breaking Changes</h3>
+<ul>
+<li><strong>Dropped support for Django &lt;4.2</strong> (3.2, 4.0, 4.1). Minimum required version is now <strong>Django 4.2 (LTS)</strong>.</li>
+</ul>
+<h3 id="added">Added</h3>
+<ul>
+<li><strong>Async generator support</strong> for <code>@sse_stream</code>. Decorate <code>async def</code> views that <code>yield</code> SSE events:
+  <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">live_feed</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">async</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">my_async_source</span><span class="p">():</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h2 id="012-2026-04-10">[0.1.2] — 2026-04-10</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>Removed <code>Connection: keep-alive</code> header — conflicts with HTTP/2 and is

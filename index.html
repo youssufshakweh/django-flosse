@@ -601,6 +601,34 @@
   
   
     <li class="md-nav__item">
+      <a href="user-guide/async-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="user-guide/heartbeats/" class="md-nav__link">
         
   
@@ -794,10 +822,14 @@
     <img src="https://img.shields.io/pypi/pyversions/django-flosse" alt="Python">
   </a>
   <a href="https://pypi.org/project/django-flosse/">
-    <img src="https://img.shields.io/pypi/djversions/django-flosse?label=Django" alt="Django">
+    <img src="https://img.shields.io/pypi/djversions/django-flosse?label=Django&color=009688" alt="Django">
+  </a>
+  <a href="https://pepy.tech/projects/django-flosse">
+    <img src="https://static.pepy.tech/personalized-badge/django-flosse?period=monthly&units=INTERNATIONAL_SYSTEM&left_color=GRAY&right_color=GREEN&left_text=downloads" alt="PyPI Downloads">
   </a>
   <img src="https://img.shields.io/badge/license-MIT-009688" alt="License">
   <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="Coverage">
+  <img src="https://img.shields.io/badge/async-ready-009688" alt="Async Ready">
 </div>
 
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse</span><span class="w"> </span><span class="kn">import</span> <span class="n">sse_stream</span>
@@ -806,6 +838,12 @@
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">live_feed</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">my_data_source</span><span class="p">():</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">})</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># ✨ Async support in v0.2.0+</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">live_feed_async</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">my_async_data_source</span><span class="p">():</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">})</span>
 </span></code></pre></div>
 <div class="grid cards">
 <ul>
@@ -813,24 +851,33 @@
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2m3 14h8v-2H8zm8-7h-2.5V7h-3v3H8l4 4z"/></svg></span> <strong>Install in seconds</strong></p>
 <p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>django-flosse
 </span></code></pre></div>
-No <code>INSTALLED_APPS</code> changes required.</p>
+No <code>INSTALLED_APPS</code> changes required.
+Supports Django <strong>4.2 – 6.0</strong>.</p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 15H6l7-14v8h5l-7 14z"/></svg></span> <strong>Zero boilerplate</strong></p>
 <p>One decorator. Your generator yields events.
-Headers, permissions, errors — all handled.</p>
+Headers, permissions, errors — all handled.
+Works with <code>def</code> or <code>async def</code>.</p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h1v2H2v2h4v2H5c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2H8v-2h8v2h-1c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2h-1v-2h4v-2h-9V9h1c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2zm0 2h4v3h-4zM5 17h4v3H5zm10 0h4v3h-4z"/></svg></span> <strong>Zero threads</strong></p>
-<p>Iterates your generator directly in the WSGI worker.
-No queues. No background processes.</p>
+<p>Iterates your generator directly in the worker.
+No queues. No background processes.
+Native async support for ASGI servers.</p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13c.34 0 .67.04 1 .09V10a2 2 0 0 0-2-2h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6a2 2 0 0 0-2 2v10c0 1.11.89 2 2 2h7.81c-.51-.88-.81-1.9-.81-3 0-3.31 2.69-6 6-6M9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9zm3 11a2 2 0 1 1 2-2c0 1.11-.89 2-2 2m10.5.25L17.75 22 15 19l1.16-1.16 1.59 1.59 3.59-3.59z"/></svg></span> <strong>Built-in permissions</strong></p>
 <p><code>IsAuthenticated</code>, <code>IsAdminUser</code>, or bring your own
-<code>BaseSSEPermission</code> subclass.</p>
+<code>BaseSSEPermission</code> subclass.
+Async-compatible out of the box.</p>
 </li>
 </ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">New in v0.2.0</p>
+<p>🎉 <strong>Async generator support is here!</strong> Write <code>async def</code> streams with <code>@sse_stream</code> — no extra config.
+Learn more: <a href="user-guide/async-support/">Async Support Guide</a></p>
 </div>
 <hr />
 <div align="center">

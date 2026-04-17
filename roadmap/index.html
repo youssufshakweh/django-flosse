@@ -598,6 +598,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/async-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/heartbeats/" class="md-nav__link">
         
   
@@ -697,6 +725,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -713,6 +759,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#completed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Completed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗓️ Planned
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗓️ Planned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v030-the-django-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.3.0 — "The Django Way"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v040-broadcast-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.4.0 — "Broadcast Ready"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -765,6 +880,64 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#completed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Completed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗓️ Planned
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗓️ Planned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v030-the-django-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.3.0 — "The Django Way"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v040-broadcast-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.4.0 — "Broadcast Ready"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -786,27 +959,25 @@
 <h1 id="roadmap">Roadmap</h1>
 <p>django-flosse is actively developed. Here is what is planned:</p>
 <hr />
+<h2 id="completed">✅ Completed</h2>
 <ul>
-<li>
-<p>[ ] <strong>Async support</strong> — native <code>async def</code> generator views for ASGI servers
-      (Uvicorn, Daphne).</p>
-</li>
-<li>
-<p>[ ] <strong>Class-based views</strong> — <code>SSEView</code> with sync and async support, matching
-      Django's own CBV conventions.</p>
-</li>
-<li>
-<p>[ ] <strong>DRF compatibility</strong> — use <code>authentication_classes</code>, <code>permission_classes</code>,
-      and <code>throttle_classes</code> from Django REST Framework directly.</p>
-</li>
-<li>
-<p>[ ] <strong><code>contrib.channels</code></strong> — built-in in-memory channel for fan-out broadcasting
-      to multiple connected clients, with zero extra dependencies.</p>
-</li>
-<li>
-<p>[ ] <strong><code>contrib.redis</code></strong> — Redis-backed channel for multi-process and
-      multi-worker deployments (<code>pip install django-flosse[redis]</code>).</p>
-</li>
+<li>[x] <strong>Async support</strong> — native <code>async def</code> generator views for ASGI servers
+      (Uvicorn, Daphne). <em>Shipped in v0.2.0.</em></li>
+</ul>
+<h2 id="planned">🗓️ Planned</h2>
+<h3 id="v030-the-django-way">v0.3.0 — "The Django Way"</h3>
+<ul>
+<li>[ ] <strong>Class-based views</strong> — <code>SSEView</code> with sync and async support, matching
+      Django's own CBV conventions.</li>
+<li>[ ] <strong>DRF compatibility</strong> — use <code>authentication_classes</code>, <code>permission_classes</code>,
+      and <code>throttle_classes</code> from Django REST Framework directly.</li>
+<li>[ ] <strong><code>contrib.channels</code></strong> — built-in in-memory channel for fan-out broadcasting
+      to multiple connected clients, with zero extra dependencies.</li>
+</ul>
+<h3 id="v040-broadcast-ready">v0.4.0 — "Broadcast Ready"</h3>
+<ul>
+<li>[ ] <strong><code>contrib.redis</code></strong> — Redis-backed channel for multi-process and
+      multi-worker deployments (<code>pip install django-flosse[redis]</code>).</li>
 </ul>
 <hr />
 <div class="admonition note">

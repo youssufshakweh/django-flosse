@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://youssufshakweh.github.io/django-flosse/user-guide/yield-styles/">
+        <link rel="canonical" href="https://youssufshakweh.github.io/django-flosse/user-guide/async-support/">
       
       
-        <link rel="prev" href="../../quickstart/">
+        <link rel="prev" href="../permissions/">
       
       
-        <link rel="next" href="../permissions/">
+        <link rel="next" href="../heartbeats/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Yield Styles - django-flosse</title>
+        <title>Async Support - django-flosse</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#yield-styles" class="md-skip">
+        <a href="#async-generator-support" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Yield Styles
+              Async Support
             
           </span>
         </div>
@@ -289,7 +289,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../yield-styles/" class="md-tabs__link">
           
   
   
@@ -544,37 +544,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Yield Styles
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../yield-styles/" class="md-nav__link">
         
   
   
@@ -590,103 +563,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plain-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plain string
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tuple-event-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tuple — (event, data)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tuple-event-data-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tuple — (event, data, id)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dict-with-data-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dict with "data" key
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dict-without-data-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dict without "data" key
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sseevent-object" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSEEvent object
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -724,10 +600,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../async-support/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async Support
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -743,6 +646,137 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-non-blocking-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Non-Blocking Polling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-redis-pubsub-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Redis Pub/Sub Streaming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-graceful-cancellation-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Graceful Cancellation &amp; Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-an-asgi-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Use an ASGI Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 Reverse Proxy Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -919,10 +953,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plain-string" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plain string
+        Quick Start
       
     </span>
   </a>
@@ -930,65 +964,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tuple-event-data" class="md-nav__link">
+  <a href="#common-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tuple — (event, data)
+        Common Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-non-blocking-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Non-Blocking Polling
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#tuple-event-data-id" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-redis-pubsub-streaming" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tuple — (event, data, id)
+        2. Redis Pub/Sub Streaming
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#dict-with-data-key" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-graceful-cancellation-cleanup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dict with "data" key
+        3. Graceful Cancellation &amp; Cleanup
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#dict-without-data-key" class="md-nav__link">
+  <a href="#deployment-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dict without "data" key
+        Deployment Requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-an-asgi-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Use an ASGI Server
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sseevent-object" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SSEEvent object
+        🔧 Reverse Proxy Configuration
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary
+        Troubleshooting
       
     </span>
   </a>
@@ -1015,153 +1083,132 @@
   
 
 
-<h1 id="yield-styles">Yield Styles</h1>
-<p><code>@sse_stream</code> accepts <strong>any</strong> of these yield styles — use whichever feels most natural.</p>
+<h1 id="async-generator-support">Async Generator Support</h1>
+<p><code>django-flosse</code> natively supports asynchronous generators out of the box. Starting from version <code>0.2.0</code>, you can write SSE streams using <code>async def</code> and <code>async for</code> without any additional configuration or dependencies.</p>
+<div class="admonition tip">
+<p class="admonition-title">Why go async?</p>
+<p>Async generators shine when your data source is I/O bound (DB queries, external APIs, message brokers) or event-driven (Redis pub/sub, Django signals). They keep the event loop unblocked and scale efficiently under high concurrency.</p>
+</div>
 <hr />
-<h2 id="plain-string">Plain string</h2>
-<p>The simplest style — yields an unnamed <code>message</code> event.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">yield</span> <span class="s2">&quot;hello&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">yield</span> <span class="s2">&quot;world&quot;</span>
+<h2 id="quick-start">Quick Start</h2>
+<p>Simply decorate an async generator with <code>@sse_stream</code>. The decorator automatically detects async generators and routes them through Django's async response pipeline.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse</span><span class="w"> </span><span class="kn">import</span> <span class="n">sse_stream</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSEEvent</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">live_metrics</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">async</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">fetch_async_metrics</span><span class="p">():</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">yield</span> <span class="n">SSEEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="s2">&quot;metric&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Wire format:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>data: hello
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>data: world
+<div class="admonition note">
+<p class="admonition-title">No config required</p>
+<p>The same decorator works for both <code>def</code> and <code>async def</code>. All yield formats (<code>str</code>, <code>tuple</code>, <code>dict</code>, <code>SSEEvent</code>) behave identically.</p>
+</div>
+<hr />
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="1-non-blocking-polling">1. Non-Blocking Polling</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse</span><span class="w"> </span><span class="kn">import</span> <span class="n">sse_stream</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dashboard_feed</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_latest_stats</span><span class="p">()</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># ✅ Non-blocking wait</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Avoid <code>time.sleep()</code></p>
+<p>Using synchronous <code>time.sleep()</code> inside an async generator will block the entire event loop. Always use <code>asyncio.sleep()</code>.</p>
+</div>
+<h3 id="2-redis-pubsub-streaming">2. Redis Pub/Sub Streaming</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis.asyncio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">redis</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse</span><span class="w"> </span><span class="kn">import</span> <span class="n">sse_stream</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSEEvent</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="s2">&quot;redis://localhost:6379/0&quot;</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">redis_channel</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">r</span><span class="o">.</span><span class="n">pubsub</span><span class="p">()</span> <span class="k">as</span> <span class="n">pubsub</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">await</span> <span class="n">pubsub</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&quot;live-feed&quot;</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">async</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">pubsub</span><span class="o">.</span><span class="n">listen</span><span class="p">():</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="k">if</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="k">yield</span> <span class="n">SSEEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span></code></pre></div>
+<h3 id="3-graceful-cancellation-cleanup">3. Graceful Cancellation &amp; Cleanup</h3>
+<p>When a client disconnects, Django cancels the async generator. Use <code>try/except asyncio.CancelledError</code> to release resources cleanly.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@sse_stream</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">managed_stream</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">resource</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acquire_async_resource</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="k">async</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">resource</span><span class="o">.</span><span class="n">stream</span><span class="p">():</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="c1"># ✅ No need to re-raise. Django handles cancellation silently.</span>
+</span></code></pre></div>
+<hr />
+<h2 id="deployment-requirements">Deployment Requirements</h2>
+<h3 id="use-an-asgi-server">✅ Use an ASGI Server</h3>
+<p>Async generators require an ASGI-compatible server to run efficiently:
+- <strong>Recommended</strong>: <code>uvicorn</code>, <code>daphne</code>, <code>hypercorn</code>
+- ⚠️ <strong>Fallback</strong>: WSGI servers (Gunicorn, uWSGI) will run async code in a thread pool, negating most performance benefits.</p>
+<p>Example <code>asgi.py</code>:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.core.asgi</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_asgi_application</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;DJANGO_SETTINGS_MODULE&quot;</span><span class="p">,</span> <span class="s2">&quot;myproject.settings&quot;</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">application</span> <span class="o">=</span> <span class="n">get_asgi_application</span><span class="p">()</span>
 </span></code></pre></div></p>
-<hr />
-<h2 id="tuple-event-data">Tuple — <code>(event, data)</code></h2>
-<p>The most common style. <code>data</code> can be any JSON-serialisable value.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">,</span> <span class="s2">&quot;done&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p><strong>Wire format:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>event: update
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>data: {&quot;count&quot;: 1}
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>event: update
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>data: {&quot;count&quot;: 2}
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>event: complete
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>data: done
+<p>Run with Uvicorn:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uvicorn<span class="w"> </span>myproject.asgi:application<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--loop<span class="w"> </span>uvloop
 </span></code></pre></div></p>
-<hr />
-<h2 id="tuple-event-data-id">Tuple — <code>(event, data, id)</code></h2>
-<p>Same as above, but includes an event ID. Useful for client-side reconnection
-— the browser sends the last <code>id</code> in the <code>Last-Event-ID</code> header on reconnect.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s2">&quot;evt-001&quot;</span><span class="p">)</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">yield</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;evt-002&quot;</span><span class="p">)</span>
+<h3 id="reverse-proxy-configuration">🔧 Reverse Proxy Configuration</h3>
+<p>Disable buffering to prevent connection timeouts:</p>
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/stream/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://backend</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kn">proxy_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kn">proxy_cache</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">24h</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
 </span></code></pre></div>
-<p><strong>Wire format:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>event: update
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>data: {&quot;count&quot;: 1}
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>id: evt-001
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>event: update
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>data: {&quot;count&quot;: 2}
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>id: evt-002
-</span></code></pre></div></p>
+<div class="admonition tip">
+<p class="admonition-title">Cloudflare / CDN users</p>
+<p>SSE connections may be terminated by caching proxies. Add a <code>Cache-Control: no-cache</code> header (handled by <code>django-flosse</code> automatically) and ensure your CDN respects streaming responses.</p>
+</div>
 <hr />
-<h2 id="dict-with-data-key">Dict with <code>"data"</code> key</h2>
-<p>Maps directly to <code>SSEEvent</code> fields. Useful when you want to pass all
-fields in one expression.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;greet&quot;</span><span class="p">}</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;evt-1&quot;</span><span class="p">}</span>
-</span></code></pre></div>
-<p>Supported keys: <code>data</code>, <code>event</code>, <code>id</code>, <code>retry</code>.</p>
-<hr />
-<h2 id="dict-without-data-key">Dict without <code>"data"</code> key</h2>
-<p>The entire dict is serialised as JSON and used as the event payload.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
-</span></code></pre></div>
-<p><strong>Wire format:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>data: {&quot;foo&quot;: &quot;bar&quot;, &quot;count&quot;: 42}
-</span></code></pre></div></p>
-<hr />
-<h2 id="sseevent-object"><code>SSEEvent</code> object</h2>
-<p>Full control over every SSE field.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django_flosse</span><span class="w"> </span><span class="kn">import</span> <span class="n">SSEEvent</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nd">@sse_stream</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">yield</span> <span class="n">SSEEvent</span><span class="p">(</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="n">data</span>  <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;done&quot;</span><span class="p">},</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="n">event</span> <span class="o">=</span> <span class="s2">&quot;complete&quot;</span><span class="p">,</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="nb">id</span>    <span class="o">=</span> <span class="s2">&quot;final&quot;</span><span class="p">,</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="n">retry</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>       <span class="c1"># tell browser: wait 5s before reconnecting</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="p">)</span>
-</span></code></pre></div>
-<p><strong>Wire format:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>retry: 5000
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>id: final
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>event: complete
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>data: {&quot;status&quot;: &quot;done&quot;}
-</span></code></pre></div></p>
-<hr />
-<h2 id="summary">Summary</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 <table>
 <thead>
 <tr>
-<th>What you yield</th>
-<th>Event name</th>
-<th>Has ID</th>
-<th>Has retry</th>
+<th>Issue</th>
+<th>Solution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>"hello"</code></td>
-<td><em>(unnamed)</em></td>
-<td>✗</td>
-<td>✗</td>
+<td><code>RuntimeError: Event loop is closed</code></td>
+<td>Ensure you're running on an ASGI server, not WSGI</td>
 </tr>
 <tr>
-<td><code>("update", data)</code></td>
-<td><code>update</code></td>
-<td>✗</td>
-<td>✗</td>
+<td>Stream stops unexpectedly</td>
+<td>Check for unhandled exceptions; wrap yields in <code>try/except</code></td>
 </tr>
 <tr>
-<td><code>("update", data, "id-1")</code></td>
-<td><code>update</code></td>
-<td>✓</td>
-<td>✗</td>
+<td>High memory usage</td>
+<td>Avoid accumulating payloads in memory; yield incrementally</td>
 </tr>
 <tr>
-<td><code>{"data": x, "event": "e"}</code></td>
-<td><code>e</code></td>
-<td>✓*</td>
-<td>✓*</td>
+<td><code>CancelledError</code> spam in logs</td>
+<td>Normal on disconnect. Handle gracefully or let Django suppress it</td>
 </tr>
 <tr>
-<td><code>{"foo": "bar"}</code></td>
-<td><em>(unnamed)</em></td>
-<td>✗</td>
-<td>✗</td>
-</tr>
-<tr>
-<td><code>SSEEvent(data=x, event="e", id="1")</code></td>
-<td><code>e</code></td>
-<td>✓</td>
-<td>✓</td>
+<td>Async view runs slowly</td>
+<td>Verify you're not using synchronous blocking calls (<code>requests</code>, <code>time.sleep</code>, etc.)</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Dict data and all non-string values are serialised to JSON automatically.
-You never need to call <code>json.dumps()</code> yourself.</p>
-</div>
 
 
 
@@ -1197,7 +1244,7 @@ You never need to call <code>json.dumps()</code> yourself.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../quickstart/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick Start">
+          <a href="../permissions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Permissions">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1207,20 +1254,20 @@ You never need to call <code>json.dumps()</code> yourself.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Quick Start
+                Permissions
               </div>
             </div>
           </a>
         
         
           
-          <a href="../permissions/" class="md-footer__link md-footer__link--next" aria-label="Next: Permissions">
+          <a href="../heartbeats/" class="md-footer__link md-footer__link--next" aria-label="Next: Heartbeats">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Permissions
+                Heartbeats
               </div>
             </div>
             <div class="md-footer__button md-icon">
