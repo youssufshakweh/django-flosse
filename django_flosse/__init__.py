@@ -13,9 +13,8 @@ Dead-simple Server-Sent Events for Django via a single decorator.
 Quick start::
 
     from django_flosse import sse_stream, SSEEvent
-    from django_flosse.permissions import IsAuthenticated
 
-    @sse_stream(permission_classes=[IsAuthenticated])
+    @sse_stream
     def live_updates(request):
         yield "connected"                             # plain string
         yield ("update", {"count": 1})                # (event, data) tuple
@@ -25,7 +24,7 @@ Quick start::
 
 from .decorators import sse_stream
 from .events import SSEEvent
-from .exceptions import SSEClientDisconnected, SSEPermissionDenied, SSEYieldError
+from .exceptions import SSEClientDisconnected, SSEYieldError
 from .formatters import to_sse
 
 __all__ = [
@@ -33,7 +32,6 @@ __all__ = [
     "SSEEvent",
     "to_sse",
     "SSEClientDisconnected",
-    "SSEPermissionDenied",
     "SSEYieldError",
 ]
 

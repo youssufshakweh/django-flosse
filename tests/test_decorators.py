@@ -1,9 +1,8 @@
 from unittest.mock import MagicMock
 
-from django.http import HttpResponse, StreamingHttpResponse
+from django.http import StreamingHttpResponse
 
 from django_flosse import SSEEvent, sse_stream
-from django_flosse.permissions import BaseSSEPermission, IsAuthenticated, IsAdminUser
 from tests.conftest import async_consume, consume
 
 
@@ -12,10 +11,9 @@ from tests.conftest import async_consume, consume
 # --------------------------------------------------------------------------- #
 
 
-def make_request(is_authenticated=True, is_staff=False):
+def make_request():
     request = MagicMock()
     request.path = "/sse/test/"
-    request.user = MagicMock(is_authenticated=is_authenticated, is_staff=is_staff)
     return request
 
 
@@ -155,106 +153,6 @@ class TestRetryDirective:
 
 
 # --------------------------------------------------------------------------- #
-# Permissions                                                                  #
-# --------------------------------------------------------------------------- #
-
-
-class TestPermissions:
-    def test_no_permission_classes_allows_all(self):
-        @sse_stream
-        def view(request):
-            yield "ok"
-
-        assert view(make_request()).status_code == 200
-
-    def test_single_deny_class_returns_403(self):
-        class DenyAll(BaseSSEPermission):
-            def has_permission(self, request):
-                return False
-
-        @sse_stream(permission_classes=[DenyAll])
-        def view(request):
-            yield "never"
-
-        response = view(make_request())
-        assert isinstance(response, HttpResponse)
-        assert response.status_code == 403
-
-    def test_single_allow_class_returns_200(self):
-        class AllowAll(BaseSSEPermission):
-            def has_permission(self, request):
-                return True
-
-        @sse_stream(permission_classes=[AllowAll])
-        def view(request):
-            yield "yes"
-
-        assert view(make_request()).status_code == 200
-
-    def test_all_must_pass_first_denies(self):
-        class Allow(BaseSSEPermission):
-            def has_permission(self, request):
-                return True
-
-        class Deny(BaseSSEPermission):
-            def has_permission(self, request):
-                return False
-
-        @sse_stream(permission_classes=[Deny, Allow])
-        def view(request):
-            yield "never"
-
-        assert view(make_request()).status_code == 403
-
-    def test_all_must_pass_second_denies(self):
-        class Allow(BaseSSEPermission):
-            def has_permission(self, request):
-                return True
-
-        class Deny(BaseSSEPermission):
-            def has_permission(self, request):
-                return False
-
-        @sse_stream(permission_classes=[Allow, Deny])
-        def view(request):
-            yield "never"
-
-        assert view(make_request()).status_code == 403
-
-    def test_is_authenticated_grants_authed_user(self):
-        @sse_stream(permission_classes=[IsAuthenticated])
-        def view(request):
-            yield "ok"
-
-        assert view(make_request(is_authenticated=True)).status_code == 200
-
-    def test_is_authenticated_denies_anon_user(self):
-        @sse_stream(permission_classes=[IsAuthenticated])
-        def view(request):
-            yield "never"
-
-        assert view(make_request(is_authenticated=False)).status_code == 403
-
-    def test_is_admin_grants_staff_user(self):
-        @sse_stream(permission_classes=[IsAdminUser])
-        def view(request):
-            yield "ok"
-
-        assert (
-            view(make_request(is_authenticated=True, is_staff=True)).status_code == 200
-        )
-
-    def test_is_admin_denies_non_staff(self):
-        @sse_stream(permission_classes=[IsAdminUser])
-        def view(request):
-            yield "never"
-
-        assert (
-            view(make_request(is_authenticated=True, is_staff=False)).status_code == 403
-        )
-
-
-# --------------------------------------------------------------------------- #
 # Error handling                                                               #
 # --------------------------------------------------------------------------- #
 
@@ -369,23 +267,6 @@ class TestAsyncDecoratedView:
         resp = await view(plain_request)
         body = await async_consume(resp)
         assert body.startswith("retry: 5000\n\n")
-
-    async def test_permission_deny_returns_403(self, anon_request):
-        @sse_stream(permission_classes=[IsAuthenticated])
-        async def view(request):
-            yield "never"
-
-        resp = await view(anon_request)
-        assert isinstance(resp, HttpResponse)
-        assert resp.status_code == 403
-
-    async def test_permission_allow_streams_200(self, authed_request):
-        @sse_stream(permission_classes=[IsAuthenticated])
-        async def view(request):
-            yield "ok"
-
-        resp = await view(authed_request)
-        assert resp.status_code == 200
 
     async def test_async_producer_exception_emits_error(self, plain_request):
         @sse_stream

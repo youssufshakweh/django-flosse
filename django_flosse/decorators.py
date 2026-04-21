@@ -3,40 +3,14 @@ from __future__ import annotations
 import inspect
 import logging
 from functools import wraps
-from typing import Any, Callable, Optional, Sequence, Type
+from typing import Any, Callable, Optional
 
 from django.http import HttpRequest, HttpResponse, StreamingHttpResponse
 
 from .events import SSEEvent
 from .formatters import to_sse
-from .permissions import BaseSSEPermission
 
 logger = logging.getLogger("django_flosse")
-
-
-# -------------------------------------------------- #
-# Shared helpers                                     #
-# -------------------------------------------------- #
-
-
-def _check_permissions(
-    request: HttpRequest,
-    permission_classes: Sequence[Type[BaseSSEPermission]],
-) -> Optional[HttpResponse]:
-    """
-    Check all permission classes against the request.
-
-    Returns a 403 HttpResponse on the first failure, else None.
-    """
-    for perm_cls in permission_classes:
-        if not perm_cls().has_permission(request):
-            logger.debug(
-                "SSE permission denied by %s for %s",
-                perm_cls.__name__,
-                request.path,
-            )
-            return HttpResponse(status=403)
-    return None
 
 
 def _build_response(streaming_content: Any) -> StreamingHttpResponse:
@@ -64,7 +38,6 @@ def sse_stream(
     _view_func: Optional[Callable] = None,
     *,
     retry: Optional[int] = None,
-    permission_classes: Sequence[Type[BaseSSEPermission]] = (),
 ) -> Callable:
     """
     Decorator that turns a **generator view** into an SSE endpoint.
@@ -86,16 +59,13 @@ def sse_stream(
 
         @sse_stream
         @sse_stream()
-        @sse_stream(retry=3000, permission_classes=[IsAuthenticated])
+        @sse_stream(retry=3000)
 
     Parameters
     ----------
     retry:
         If given, sends a ``retry:`` directive (in ms) as the first frame,
         telling the browser how long to wait before reconnecting.
-    permission_classes:
-        Sequence of :class:`~django_flosse.permissions.BaseSSEPermission`
-        **classes** (not instances). All must pass or the response is HTTP 403.
 
     Yield styles
     ------------
@@ -133,14 +103,7 @@ def sse_stream(
                 request: HttpRequest, *args: Any, **kwargs: Any
             ) -> HttpResponse:
                 # ---------------------------------------------------------------- #
-                # 1. Permission checks                                             #
-                # ---------------------------------------------------------------- #
-                denied = _check_permissions(request, permission_classes)
-                if denied:
-                    return denied
-
-                # ---------------------------------------------------------------- #
-                # 2. Async streaming generator                                     #
+                # 1. Async streaming generator                                     #
                 # ---------------------------------------------------------------- #
                 async def astream():
                     if retry is not None:
@@ -163,7 +126,7 @@ def sse_stream(
                         yield SSEEvent(data=str(exc), event="error").encode()
 
                 # ---------------------------------------------------------------- #
-                # 3. Build response                                                #
+                # 2. Build response                                                #
                 # ---------------------------------------------------------------- #
                 return _build_response(astream())
 
@@ -174,16 +137,8 @@ def sse_stream(
         # -------------------------------------------------------------------- #
         @wraps(view_func)
         def wrapper(request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-
             # ---------------------------------------------------------------- #
-            # 1. Permission checks                                             #
-            # ---------------------------------------------------------------- #
-            denied = _check_permissions(request, permission_classes)
-            if denied:
-                return denied
-
-            # ---------------------------------------------------------------- #
-            # 2. Streaming generator                                           #
+            # 1. Streaming generator                                           #
             # ---------------------------------------------------------------- #
             def _stream():
                 if retry is not None:
@@ -197,7 +152,7 @@ def sse_stream(
                             logger.warning("SSE format error: %s", fmt_err)
                             yield SSEEvent(data=str(fmt_err), event="error").encode()
 
-                except GeneratorExit:  # pragma: no cover
+                except GeneratorExit:
                     logger.debug("SSE client disconnected from %s.", request.path)
 
                 except Exception as exc:  # noqa: BLE001
@@ -205,7 +160,7 @@ def sse_stream(
                     yield SSEEvent(data=str(exc), event="error").encode()
 
             # ---------------------------------------------------------------- #
-            # 3. Build response                                                #
+            # 2. Build response                                                #
             # ---------------------------------------------------------------- #
             return _build_response(_stream())
 
