@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.0a1] - 2026-04-23
+
+### Changed
+- Marked release as alpha (v0.2.0a1) to indicate early development status
+
+### Removed
+- Custom permissions system (use Django native decorators instead)
+
+### Known Limitations
+- Error messages not yet fully sanitized for production
+- Async GeneratorExit handling incomplete
+- No backpressure control for high-concurrency scenarios
+
+*This is an early alpha. Not recommended for production without testing.*
+
+---
+
 ## [0.2.0] — 2026-04-15
 
 ### Breaking Changes

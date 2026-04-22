@@ -69,7 +69,7 @@ to avoid conflicts with your system Python.
 <!-- termynal -->
 ```
 $ python -c "import django_flosse; print(django_flosse.__version__)"
-0.2.0
+0.2.0a1
 ```
 
 !!! success "You're ready!"

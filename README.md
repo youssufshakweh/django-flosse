@@ -16,7 +16,7 @@
     <img src="https://static.pepy.tech/personalized-badge/django-flosse?period=monthly&units=INTERNATIONAL_SYSTEM&left_color=GRAY&right_color=GREEN&left_text=downloads" alt="PyPI Downloads">
   </a>
   <img src="https://img.shields.io/badge/license-MIT-009688" alt="License">
-  <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="Coverage">
+  <img src="https://img.shields.io/badge/coverage-99%25-brightgreen" alt="Coverage">
     <img src="https://img.shields.io/badge/async-ready-009688" alt="Async Ready">
 </div>
 
