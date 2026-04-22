@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://youssufshakweh.github.io/django-flosse/changelog/">
       
       
-        <link rel="prev" href="../roadmap/">
+        <link rel="prev" href="../api-reference/">
       
       
       
@@ -320,25 +320,6 @@
   
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../roadmap/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Roadmap
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
     
   
   
@@ -568,34 +549,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../user-guide/permissions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Permissions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../user-guide/async-support/" class="md-nav__link">
         
   
@@ -711,33 +664,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -801,6 +727,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#020a1-2026-04-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0a1] - 2026-04-23
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0a1] - 2026-04-23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#020-2026-04-15" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -863,7 +839,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -913,6 +889,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#020a1-2026-04-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0a1] - 2026-04-23
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0a1] - 2026-04-23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#020-2026-04-15" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -975,7 +1001,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1015,6 +1041,23 @@
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>,
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <hr />
+<h2 id="020a1-2026-04-23">[0.2.0a1] - 2026-04-23</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>Marked release as alpha (v0.2.0a1) to indicate early development status</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>Custom permissions system (use Django native decorators instead)</li>
+</ul>
+<h3 id="known-limitations">Known Limitations</h3>
+<ul>
+<li>Error messages not yet fully sanitized for production</li>
+<li>Async GeneratorExit handling incomplete</li>
+<li>No backpressure control for high-concurrency scenarios</li>
+</ul>
+<p><em>This is an early alpha. Not recommended for production without testing.</em></p>
+<hr />
 <h2 id="020-2026-04-15">[0.2.0] — 2026-04-15</h2>
 <h3 id="breaking-changes">Breaking Changes</h3>
 <ul>
@@ -1040,7 +1083,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <li>Removed threading and heartbeat — the generator is now iterated directly
   in the WSGI worker with zero extra threads or queues.</li>
 </ul>
-<h3 id="removed">Removed</h3>
+<h3 id="removed_1">Removed</h3>
 <ul>
 <li><code>heartbeat_interval</code> parameter from <code>@sse_stream</code>.</li>
 </ul>
@@ -1079,7 +1122,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../roadmap/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Roadmap">
+          <a href="../api-reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Reference">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1089,7 +1132,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
                 Previous
               </span>
               <div class="md-ellipsis">
-                Roadmap
+                API Reference
               </div>
             </div>
           </a>
