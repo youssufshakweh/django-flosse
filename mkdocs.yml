@@ -39,12 +39,10 @@ nav:
   - Quick Start: quickstart.md
   - User Guide:
       - Yield Styles: user-guide/yield-styles.md
-      - Permissions: user-guide/permissions.md
       - Async Support: user-guide/async-support.md
       - Heartbeats: user-guide/heartbeats.md
       - Deployment: user-guide/deployment.md
   - API Reference: api-reference.md
-  - Roadmap: roadmap.md
   - Changelog: changelog.md
 
 plugins:

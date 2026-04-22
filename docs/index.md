@@ -67,12 +67,6 @@ async def live_feed_async(request):
     No queues. No background processes.
     Native async support for ASGI servers.
 
--   :material-lock-check: **Built-in permissions**
-
-    `IsAuthenticated`, `IsAdminUser`, or bring your own
-    `BaseSSEPermission` subclass.
-    Async-compatible out of the box.
-
 </div>
 
 !!! tip "New in v0.2.0"

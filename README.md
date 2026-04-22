@@ -45,7 +45,6 @@ Full documentation at **[youssufshakweh.github.io/django-flosse](https://youssuf
 
 - [Quick Start](https://youssufshakweh.github.io/django-flosse/quickstart/)
 - [Yield Styles](https://youssufshakweh.github.io/django-flosse/user-guide/yield-styles/)
-- [Permissions](https://youssufshakweh.github.io/django-flosse/user-guide/permissions/)
 - [Deployment](https://youssufshakweh.github.io/django-flosse/user-guide/deployment/)
 - [API Reference](https://youssufshakweh.github.io/django-flosse/api-reference/)
 
